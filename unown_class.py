@@ -33,8 +33,8 @@ def Classification(img_name):
 
   array_img = img_to_array(tmp).reshape(1, 50, 50, 3).astype('float32') / 255.0
 
-  model = model_from_json(open('./unown_model.json').read())
-  model.load_weights('./unown_model_weights.hdf5')
+  model = model_from_json(open('./cnn_model/unown_model.json').read())
+  model.load_weights('./cnn_model/unown_model_weights.hdf5')
 
   pred = model.predict(array_img, batch_size=1, verbose=1)
   max_str = pred.argmax() #ndarrayの最大値のインデックス取得
