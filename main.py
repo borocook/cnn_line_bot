@@ -44,19 +44,18 @@ message_body = "ポケモンのアンノーンの画像を送信して頂くと�
 
 @handler.add(FollowEvent)
 def handle_follow(event):
-
+    profile = line_bot_api.get_profile(event.source.user_id)
+    messages = profile.display_name + "さん、はじめまして！友だち追加ありがとうございます。\n"+message_body
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=hello_body)
+        TextSendMessage(text=messages)
     )
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    profile = line_bot_api.get_profile(event.source.user_id)
-    messages = profile.display_name + "さん、はじめまして！友だち追加ありがとうございます。"
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=messages))
+        TextSendMessage(text=message_body))
 
 @handler.add(MessageEvent, message=(ImageMessage))
 def handle_image_message(event):
