@@ -39,22 +39,22 @@ def callback():
 
     return 'OK'
 
-#hello_mes = '{Nickname}さん、はじめまして！友だち追加ありがとうございます。{AccountName}です。'
-#+'ポケモンのアンノーンの画像を送信して頂くと自動でAIが判別して結果を返信します。'
-#+'【画像の注意事項】１．画像はなるべく隙間を無くしてください。２．背景の色は統一してください。'
+hello_mes = '{Nickname}さん、はじめまして！友だち追加ありがとうございます。{AccountName}です。'
++'ポケモンのアンノーンの画像を送信して頂くと自動でAIが判別して結果を返信します。'
++'【画像の注意事項】１．画像はなるべく隙間を無くしてください。２．背景の色は統一してください。'
 
 @handler.add(FollowEvent)
 def handle_follow(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text='初めまして')
+        TextSendMessage(text=hello_mes)
     )
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text))
+        TextSendMessage(text=hello_mes))
 
 @handler.add(MessageEvent, message=(ImageMessage))
 def handle_image_message(event):
